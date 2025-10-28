@@ -1,6 +1,0 @@
-{
-  "extends": [
-    "github>joryirving/renovate-config",
-    "github>joryirving/home-ops//.github/renovate/autoMerge.json5"
-  ]
-}
