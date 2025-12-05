@@ -2,7 +2,7 @@ terraform {
   required_providers {
     onepassword = {
       source  = "1Password/onepassword"
-      version = "2.2.1"
+      version = ">= 2.2.1"
     }
   }
 }
@@ -15,4 +15,3 @@ data "onepassword_item" "item" {
   vault = data.onepassword_vault.vault.uuid
   title = var.item
 }
-
