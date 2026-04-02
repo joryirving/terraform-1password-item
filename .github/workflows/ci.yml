@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate module
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          version: 1.8
+
+      - name: Run tofu init
+        id: init
+        run: tofu init -upgrade
+
+      - name: Run tofu validate
+        run: tofu validate
+
+  validate-example:
+    name: Validate example
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          version: 1.8
+
+      - name: Run tofu init on example
+        id: init
+        run: |
+          cd examples/simple
+          tofu init -upgrade
+
+      - name: Run tofu validate on example
+        run: |
+          cd examples/simple
+          tofu validate
