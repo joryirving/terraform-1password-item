@@ -1,9 +1,17 @@
 variable "vault" {
-  description = "Vault name to find the Item in"
+  description = "Name of the 1Password vault containing the item"
   type        = string
+  validation {
+    condition     = length(var.vault) > 0
+    error_message = "Vault name must not be empty."
+  }
 }
 
 variable "item" {
-  description = "Password Item to fetch"
+  description = "Name of the 1Password item to retrieve"
   type        = string
+  validation {
+    condition     = length(var.item) > 0
+    error_message = "Item name must not be empty."
+  }
 }
